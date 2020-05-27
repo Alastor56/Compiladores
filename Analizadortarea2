@@ -1,0 +1,37 @@
+%{
+	#include<stdio.h>
+%}
+
+entero [0-9]
+real ([0-9])+"."([0-9])+
+id [#][a-zA-Z0-9]+
+comenlin --[ \ta-zA-Z0-9]+\n
+comenmul [<][*][ \t\na-zA-Z0-9]+[*][>]
+oparit [+*/%-]
+oprela ("<"|">"|"<="|">="|"=="|"!=")
+opasig ={1}
+simpuntu [()}{;,]
+espacio [ \t\n]+
+
+%%
+
+if {printf("Encontre una palabra reservada %s\n", yytext);}
+else {printf("Encontre una palabra reservada %s\n", yytext);}
+while {printf("Encontre una palabra reservada %s\n", yytext);}
+{entero}+ {printf("Encontre un numero entero %s\n", yytext);}
+{real} {printf("Encontre un numero real %s\n", yytext);}
+{id}+ {printf("Encontre un identificado %s\n", yytext);}
+{comenlin} {printf("Encontre un comentario de una linea %s\n", yytext);}
+{comenmul} {printf("Encontre un comentario multilinea %s\n", yytext);}
+{oparit} {printf("Encontre un operador aritmetico %s\n", yytext);}
+{oprela} {printf("Encontre un operador relacional %s\n", yytext);}
+{opasig} {printf("Encontre un operador de asignacion %s\n", yytext);}
+{simpuntu} {printf("Encontre un simbolo especial %s\n", yytext);}
+{espacio} {/*Ignorar los espacios en blanco*/}
+. {printf("Ha ocurrido un error lexico: %s\n", yytext);}
+
+%%
+
+int main(){	
+	yylex();
+}
