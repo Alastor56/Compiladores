@@ -1,0 +1,13 @@
+int x[6], y[5][3][2]; ... x[j+j*2] = y[i+2][j-1][k*3];
+
+t0 = i +2
+t1 = t0 * 24  // 3*(2*4)
+t2 = j - 1
+t3 = t2 * 6  //3*2
+t4 = t3 + t1
+t5 = k + 3
+t6 = t5 * 4  //4 el espacio por cada numero
+t7 = t6 + t4
+t8 = j * 2
+t9 = t8 + j
+x[t9] = y[t7]
